@@ -6,10 +6,22 @@
 }
 
 body {
-    background-color: black; 
     height: 100%;
     overflow: hidden;
     margin: 0;
+    background: radial-gradient(circle, #ff007f, transparent);
+}
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -3;
+    height: 100%;
+    background-image: url('./bg/1.png');
+    opacity: 0.4;
+    pointer-events: none;
 }
 
 .button-div {
@@ -30,15 +42,23 @@ body {
 }
 
 .sticky-nav {
+    letter-spacing: 0.2em;
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 200;
+    z-index: 1000;
     text-align: center;
-    background-color: #ffd700;
+    background-color: #ff4d4d;
     opacity: 0;
-    transition: opacity 1s ease-in;
-    box-shadow: 0px 3px 3px black;
+    transition: opacity 0.5s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.sticky-nav:hover {
+    background-color: #ff6666;
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 /*
@@ -48,10 +68,10 @@ body {
 */
 
 .pink-background {
-    background-color : #f7eaf9; /* Light pink background */
+    background-color : #f7eaf9;
     z-index: 1;
     height: 100%;
-    width: 200%;
+    width: 100%;
 }
 
 .sentence-container {
@@ -101,9 +121,24 @@ body {
     column-count: 4;
     column-gap: 0;
     width: 100%;
-    min-height: 100vh;
+    min-height: max-content;
     z-index: -1;
     animation: moveGallery 20s ease-in-out infinite alternate;
+}
+
+@media screen and (max-width: 1024px) {
+    .gallery {
+        column-count: 2;
+        animation: moveGalleryMobile 20s ease-in-out infinite alternate;
+    }
+
+}
+
+
+@keyframes moveGalleryMobile {
+    0% {top: 10%;}
+    50% {top: -50%;}
+    100% {top: 10%}
 }
 
 @keyframes moveGallery {
